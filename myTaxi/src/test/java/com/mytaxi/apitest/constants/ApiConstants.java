@@ -11,4 +11,12 @@ public class ApiConstants {
     public static final int STATUS_CODE_403 = 403;
     public static final int STATUS_CODE_504 = 504;
     public static final int STATUS_CODE_502 = 502;
+
+    public static final String TEST_RESOURCE_DIR = new StringBuilder(System.getProperty("user.dir"))
+            .append(System.getProperty("file.separator"))
+            .append("src").append(System.getProperty("file.separator"))
+            .append("test").append(System.getProperty("file.separator"))
+            .append("resources").append(System.getProperty("file.separator"))
+            .append("props").append(System.getProperty("file.separator"))
+            .toString();
 }
