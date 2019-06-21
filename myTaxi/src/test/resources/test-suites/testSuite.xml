@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="test suite" verbose="2" parallel="none" preserve-order="false">
+    <listeners>
+        <listener class-name="com.mytaxi.apitest.utility.CustomListeners"/>
+
+    </listeners>
+    <test name="Sample test">
+        <classes>
+            <class name="com.mytaxi.apitest.tests.ApiWorkflow"/>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->

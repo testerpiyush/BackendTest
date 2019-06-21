@@ -44,7 +44,7 @@ public class CustomListeners extends TestListenerAdapter {
         testReportMap.get(Thread.currentThread().getId()).log(LogStatus.INFO, "Testcase", tr.getName());
     }
 
-    private void log(String string) {
+    public void log(String string) {
         logger.log(Level.INFO, string);
         if (++m_count % 40 == 0) {
             System.out.println("");

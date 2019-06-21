@@ -124,6 +124,38 @@ public class ReportUtil extends CustomListeners {
         }
     }
 
+    public static void log(String step, String details, String status, AssertionError error) {
+        try {
+            ExtentTest extentTest = testReportMap.get(Thread.currentThread().getId());
+            switch (status.trim().toLowerCase()) {
+                case "pass":
+                    logger.log(Level.INFO, "[" + Thread.currentThread().getName() + "] " + step + "-" + details);
+                    extentTest.log(LogStatus.PASS, step, details);
+                    Reporter.log(step + "-" + details);
+                    break;
+                case "fail":
+                    logger.log(Level.INFO, "[" + Thread.currentThread().getName() + "] " + step + "-" + details);
+                    extentTest.log(LogStatus.FAIL, step, details);
+                    Reporter.log(step + "-" + details);
+                    break;
+                case "info":
+                    logger.log(Level.INFO, "[" + Thread.currentThread().getName() + "] " + step + "-" + details);
+                    extentTest.log(LogStatus.INFO, step, details);
+                    Reporter.log(step + "-" + details);
+                    break;
+                case "skip":
+                    logger.log(Level.INFO, "[" + Thread.currentThread().getName() + "] " + step + "-" + details);
+                    extentTest.log(LogStatus.SKIP, step, details);
+                    Reporter.log(step + "-" + details);
+                    break;
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }
 
