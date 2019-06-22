@@ -1,0 +1,17 @@
+version: 2.0
+jobs:
+  "MyTaxiTest":
+    build:
+      working_directory: ~/BackendTest/myTaxi
+
+      steps:
+        - checkout
+        - run: mvn dependency:go-offline
+        - run: cd ~/BackendTest/myTaxi
+        - run: mvn test
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - "MyTaxiTest"
