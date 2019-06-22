@@ -110,6 +110,56 @@ public class ApiWorkflow extends TestBase {
         }
     }
 
+    @Test(description = "Verify specific userId in post API ")
+    public void verifyUserIdPost() {
+        try {
+            ReportUtil.log("Start test", "Verify userId in post of a user", "Info");
+            response = RestUtil.callGet(testProps.getProperty("baseurl"), testProps.getProperty("users"));
+            Assert.assertNotNull(response.body(), "User API response is Null");
+            ReportUtil.log("Verify User API", "Successfully fetched User API response ", "Info");
+            user = mapper.readValue(response.asString(), User[].class);
+            int userId = validateResponse.getUserId(user, testProps.getProperty("user"));
+            Assert.assertTrue(userId > 0, "User not found");
+            ReportUtil.log("Find User", "User found in Users API response ", "Info");
+            response = RestUtil.callGet(testProps.getProperty("baseurl"), testProps.getProperty("posts"), "userId", Integer.toString(userId));
+            Assert.assertNotNull(response.body(), "Post API response is Null");
+            ReportUtil.log("Verify Post API", "Successfully fetched Post API response ", "Info");
+            posts = mapper.readValue(response.asString(), Post[].class);
+            for (Post ite : posts) {
+                Assert.assertEquals(ite.getUserId().toString(), Integer.toString(userId), "UserId is not matched : " + ite.toString());
+            }
+            ReportUtil.log("Verify UserId in post", "UserId is matched in posts", "Pass");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ReportUtil.log("Error in post API response", "UserId didn't matched", "Fail", e);
+        }
+    }
+
+    @Test(description = "Verify anonymous user posts ")
+    public void verifyAnonymousUserPost() {
+        try {
+            ReportUtil.log("Start test", "Verify anonymous user posts", "Info");
+            response = RestUtil.callGet(testProps.getProperty("baseurl"), testProps.getProperty("users"));
+            Assert.assertNotNull(response.body(), "User API response is Null");
+            ReportUtil.log("Verify User API", "Successfully fetched User API response ", "Info");
+            user = mapper.readValue(response.asString(), User[].class);
+            int userId = validateResponse.getUserId(user, testProps.getProperty("user"));
+            Assert.assertTrue(userId > 0, "User not found");
+            ReportUtil.log("Find User", "User found in Users API response ", "Info");
+            response = RestUtil.callGet(testProps.getProperty("baseurl"), testProps.getProperty("posts"));
+            Assert.assertNotNull(response.body(), "Post API response is Null");
+            ReportUtil.log("Verify Post API", "Successfully fetched Post API response ", "Info");
+            posts = mapper.readValue(response.asString(), Post[].class);
+            List<String> allUserId = validateResponse.getAllUserId(user);
+            if (validateResponse.verifyPosts(posts, allUserId)) {
+                Assert.fail("Anonymous user found");
+            }
+            ReportUtil.log("find anonymous user posts", "anonymous user posts not found", "Pass");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ReportUtil.log("find anonymous user posts", "anonymous user posts not found", "Fail");
+        }
+    }
 
 }
 

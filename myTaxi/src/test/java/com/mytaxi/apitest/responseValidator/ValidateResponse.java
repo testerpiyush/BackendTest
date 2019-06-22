@@ -11,8 +11,7 @@ import com.mytaxi.apitest.utility.RestUtil;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import static com.mytaxi.apitest.base.TestBase.testProps;
@@ -89,5 +88,29 @@ public class ValidateResponse {
         }
     }
 
+    public List<String> getAllUserId(User[] users) {
+        List<String> userIds = new ArrayList<>();
+        for (User id : users) {
+            userIds.add(id.getId().toString());
+        }
+        return userIds;
+    }
+
+    public boolean verifyPosts(Post[] posts, List<String> list) {
+        boolean userFound = false;
+        List<String> postids = new ArrayList<>();
+        for (Post id : posts) {
+            postids.add(id.getUserId().toString());
+        }
+        Set<String> set = new HashSet<>(postids);
+        System.out.println("containsing " + set);
+
+        for (Iterator<String> it = set.iterator(); it.hasNext(); ) {
+            if (!list.contains(it.next())) {
+                userFound = true;
+            }
+        }
+        return userFound;
+    }
 
 }
