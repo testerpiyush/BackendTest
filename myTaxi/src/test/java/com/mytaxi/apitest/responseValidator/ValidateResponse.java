@@ -79,7 +79,7 @@ public class ValidateResponse {
         try {
             for (String s : postId) {
                 response = RestUtil.callGet(testProps.getProperty("baseurl"), testProps.getProperty("comments"), "postId", s);
-                Assert.assertNotNull(response.body());
+                Assert.assertNotNull(response.body(), "Comment API response is Null");
                 ReportUtil.log("Fetch Comments for postId: " + s, "Successfully fetched comments API response for a post ", "Info");
                 comments = mapper.readValue(response.asString(), Comment[].class);
                 validateEmail(comments);
