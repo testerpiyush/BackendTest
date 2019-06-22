@@ -2,8 +2,6 @@ version: 2.0
 jobs:
   "MyTaxiTest":
     steps:
-      - checkout
-      - run: mvn test
       - run:
           name: Run tests
           command: mvn test
