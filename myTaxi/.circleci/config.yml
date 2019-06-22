@@ -1,17 +1,17 @@
 version: 2.0
 jobs:
   "MyTaxiTest":
+    docker:
+      - image: circleci/openjdk:stretch
     build:
-      working_directory: ~/BackendTest/myTaxi
-
-      steps:
-        - checkout
-        - run: mvn dependency:go-offline
-        - run: cd ~/BackendTest/myTaxi
-        - run: mvn test
+      working_directory: ~/backendTest/myTaxi
+    steps:
+      - run: mvn dependency:go-offline
+      - run: mvn test
+      - run: echo "hello world"
 
 workflows:
   version: 2
-  build:
+  build-workflow:
     jobs:
       - "MyTaxiTest"
