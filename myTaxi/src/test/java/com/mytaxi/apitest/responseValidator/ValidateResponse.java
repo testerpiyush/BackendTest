@@ -103,8 +103,6 @@ public class ValidateResponse {
             postids.add(id.getUserId().toString());
         }
         Set<String> set = new HashSet<>(postids);
-        System.out.println("containsing " + set);
-
         for (Iterator<String> it = set.iterator(); it.hasNext(); ) {
             if (!list.contains(it.next())) {
                 userFound = true;

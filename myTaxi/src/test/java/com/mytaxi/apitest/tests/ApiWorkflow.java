@@ -24,7 +24,7 @@ public class ApiWorkflow extends TestBase {
     private User[] user;
     private Post[] posts;
 
-    @Test(description = "Verify Email format in comments")
+    @Test(description = "Verify Email format in comments", priority = 1)
     public void verifyEmailInCommentsWorkflow() {
         try {
             ReportUtil.log("Start test", "Verify comments for post of a user", "Info");
@@ -50,7 +50,7 @@ public class ApiWorkflow extends TestBase {
         }
     }
 
-    @Test(description = "Verify user API response")
+    @Test(description = "Verify user API response", priority = 2)
     public void verifyUserResponseNotNull() {
         try {
             ReportUtil.log("Start test", "Verify User API response", "Info");
@@ -70,7 +70,7 @@ public class ApiWorkflow extends TestBase {
         }
     }
 
-    @Test(description = "Verify Posts API response")
+    @Test(description = "Verify Posts API response", priority = 3)
     public void verifyPostResponseNotNull() {
         try {
             ReportUtil.log("Start test", "Verify Post API response", "Info");
@@ -89,7 +89,7 @@ public class ApiWorkflow extends TestBase {
         }
     }
 
-    @Test(description = "Verify Comment API response")
+    @Test(description = "Verify Comment API response", priority = 4)
     public void verifyCommentsNotNull() {
         try {
             ReportUtil.log("Start test", "Verify Comments API response", "Info");
@@ -110,7 +110,7 @@ public class ApiWorkflow extends TestBase {
         }
     }
 
-    @Test(description = "Verify specific userId in post API ")
+    @Test(description = "Verify specific userId in post API ", priority = 5)
     public void verifyUserIdPost() {
         try {
             ReportUtil.log("Start test", "Verify userId in post of a user", "Info");
@@ -135,7 +135,7 @@ public class ApiWorkflow extends TestBase {
         }
     }
 
-    @Test(description = "Verify anonymous user posts ")
+    @Test(description = "Verify anonymous user posts ", priority = 6)
     public void verifyAnonymousUserPost() {
         try {
             ReportUtil.log("Start test", "Verify anonymous user posts", "Info");
