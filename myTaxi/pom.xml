@@ -280,7 +280,7 @@
                         </systemPropertyVariables>
                         <suiteXmlFiles>
                             <!--suppress MavenModelInspection -->
-                            <suiteXmlFile>${project.basedir}/src/test/resources/${path}/${suiteXmlFile}</suiteXmlFile>
+                            <suiteXmlFile>${project.basedir}/src/test/resources/test-suites/testSuite.xml</suiteXmlFile>
                         </suiteXmlFiles>
                         <testFailureIgnore>true</testFailureIgnore>
                         <reportsDirectory>test-output</reportsDirectory>
