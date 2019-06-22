@@ -1,10 +1,12 @@
 version: 2.0
 jobs:
   "MyTaxiTest":
-    steps:
-      - run:
-          name: Run tests
-          command: mvn test
+    build:
+      working_directory: ~/BackendTest/myTaxi
+
+      steps:
+        - run: mvn dependency:go-offline
+        - run: mvn test
 
 workflows:
   version: 2
