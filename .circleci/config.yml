@@ -4,11 +4,13 @@ jobs:
     docker:
       - image: circleci/openjdk:stretch
     build:
-      working_directory: ~/backendTest/myTaxi
     steps:
-      - run: mvn dependency:go-offline
+      - checkout
+      - run: mvn clean install
       - run: mvn test
-      - run: echo "hello world"
+      - store_test_results:
+          path: target/surefire-reports
+
 
 workflows:
   version: 2
