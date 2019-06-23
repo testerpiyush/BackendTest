@@ -12,7 +12,7 @@ jobs:
           path: test-output
       - store_artifacts:
           path: /test-output/test-report.html
-
+          destination: test-output
 
 
 
