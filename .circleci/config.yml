@@ -9,7 +9,7 @@ jobs:
       - run: mvn clean install
       - run: mvn test
       - store_test_results:
-          path: target/surefire-reports
+          path: test-output
 
 
 workflows:
