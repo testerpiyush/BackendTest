@@ -9,10 +9,10 @@ jobs:
       - run: mvn clean install
       - run: mvn test
       - store_test_results:
-          path: test-output
+          path: ~/test-output
       - store_artifacts:
-          path: /test-output/test-report.html
-          destination: test-output
+          path: ~/test-output/junitreports
+
 
 
 
