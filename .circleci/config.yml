@@ -11,8 +11,8 @@ jobs:
       - store_test_results:
           path: test-output
       - store_artifacts:
-          path: /test-output
-          destination: test-report.html
+          path: /test-output/test-report.html
+
 
 
 
